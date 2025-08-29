@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import HomePage from './components/HomePage';
 import GamePage from './components/GamePage';
 import QueriesPage from './components/QueriesPage';
-import { valorantData, leagueOfLegendsData, tftData, games } from './data/db';
+import { valorantData, leagueOfLegendsData, tftData, lorData, games } from './data/db';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -18,6 +18,8 @@ const App: React.FC = () => {
         return <GamePage gameData={leagueOfLegendsData} allGames={games} onGameSelect={setCurrentPage} />;
       case 'tft':
         return <GamePage gameData={tftData} allGames={games} onGameSelect={setCurrentPage} />;
+      case 'lor':
+        return <GamePage gameData={lorData} allGames={games} onGameSelect={setCurrentPage} />;
       case 'queries':
         return <QueriesPage />;
       case 'home':

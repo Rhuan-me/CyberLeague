@@ -10,8 +10,18 @@ const QueryResultTable: React.FC<QueryResultTableProps> = ({ headers, data }) =>
     return <p className="text-gray-500 text-center">Nenhum resultado encontrado para esta consulta.</p>;
   }
 
+  const normalizeKey = (str: string): string => {
+    return str
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  };
+
   const keys = headers.map(header => {
-      const key = Object.keys(data[0]).find(k => k.toLowerCase() === header.toLowerCase().replace(/ /g, '_').replace('(%)',''));
+      // Converts "Prêmio Total" to "premio_total" for matching
+      const headerAsKey = normalizeKey(header.replace('(%)','').trim().replace(/ /g, '_'));
+      // Finds a data key like "premio_total" by comparing its normalized version
+      const key = Object.keys(data[0]).find(k => normalizeKey(k) === headerAsKey);
       return key || '';
   });
 

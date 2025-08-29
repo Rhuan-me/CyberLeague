@@ -19,16 +19,14 @@ const queriesList = [
 
 // Query 1: List all 'League of Legends' tournaments.
 const runQuery1 = () => {
-    const headers = ["Nome do Torneio", "Ano", "Premiação Total"];
+    const headers = ["Nome do Torneio", "Ano", "Prêmio Total"];
     const data = allFullTournaments
         .filter(t => t.gameId === 'league')
-        .map(t => [
-            t.name,
-            t.year,
-            t.reward
-                ? t.reward.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0 })
-                : 'N/A',
-        ]);
+        .map(t => ({
+            nome_do_torneio: t.name,
+            ano: t.year,
+            premio_total: t.prizePool ? `$${t.prizePool.toLocaleString('en-US')}` : 'N/A'
+        }));
     return { headers, data };
 };
 
@@ -89,7 +87,7 @@ const runQuery5 = () => {
     const worlds = allFullTournaments.find(t => t.name === 'Worlds' && t.year === 2023);
     const data = worlds?.sponsorships?.map(s => ({
         patrocinador: s.sponsorName,
-        valor_investido: s.investment
+        valor_investido: `$${s.investment.toLocaleString('en-US')}`
     })) || [];
     return { headers, data };
 };
@@ -97,17 +95,32 @@ const runQuery5 = () => {
 // Query 6: Tournaments in the last 6 months with total sponsorship value.
 const runQuery6 = () => {
     const headers = ["Torneio", "Data de Início", "Total Patrocínios"];
-    const sixMonthsAgo = new Date();
+    
+    // To make the query stable over time, we'll treat the latest tournament date as "today".
+    const latestDate = allFullTournaments.reduce((latest, t) => {
+        const tDate = new Date(t.startDate);
+        return tDate > latest ? tDate : latest;
+    }, new Date(0));
+
+    const sixMonthsAgo = new Date(latestDate);
     sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
     
     const data = allFullTournaments
-        .filter(t => new Date(t.startDate) >= sixMonthsAgo)
+        .filter(t => {
+            const tournamentDate = new Date(t.startDate);
+            return tournamentDate >= sixMonthsAgo && tournamentDate <= latestDate;
+        })
         .map(t => ({
             torneio: t.name,
             data_de_inicio: new Date(t.startDate).toLocaleDateString('pt-BR'),
             total_patrocinios: t.sponsorships?.reduce((sum, s) => sum + s.investment, 0) || 0
         }))
-        .sort((a, b) => b.total_patrocinios - a.total_patrocinios);
+        .sort((a, b) => b.total_patrocinios - a.total_patrocinios)
+        .map(t => ({
+            ...t,
+            total_patrocinios: `$${t.total_patrocinios.toLocaleString('en-US')}`
+        }));
+
     return { headers, data };
 };
 

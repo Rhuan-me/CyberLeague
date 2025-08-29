@@ -39,32 +39,64 @@ const allPlayerStats: (Omit<PlayerTournamentStats, 'tournamentName' | 'year'> & 
 
 
 // Source of truth for players from PDF
+// Source of truth for players from PDF, now with more complete rosters
 export const allPlayers: (Omit<Player, 'stats'> & { teamId: number })[] = [
+  // LOUD (5 players) - teamId 2
   { id: 1, name: 'Felipe Gonçalves', nickname: 'brTT', teamId: 2 },
+  { id: 13, name: 'Erick Santos', nickname: 'aspas', teamId: 2 },
+  { id: 14, name: 'Matias Delipetro', nickname: 'Saadhak', teamId: 2 },
+  { id: 15, name: 'Cauan Pereira', nickname: 'cauanzin', teamId: 2 },
+  { id: 16, name: 'Felipe Basso', nickname: 'Less', teamId: 2 },
+
+  // FURIA (3 players) - teamId 3
   { id: 2, name: 'Matheus Lima', nickname: 'Karioka', teamId: 3 },
+  { id: 17, name: 'Gabriel Akemi', nickname: 'qck', teamId: 3 },
+  { id: 18, name: 'Agustin Ibarra', nickname: 'nzr', teamId: 3 },
+  
+  // Team Liquid (5 players) - teamId 4
   { id: 3, name: 'Nicolaj Jensen', nickname: 'Jensen', teamId: 4 },
+  { id: 19, name: 'Elias Lipp', nickname: 'Jamppi', teamId: 4 },
+  { id: 20, name: 'Dom Sulcas', nickname: 'soulcas', teamId: 4 },
+  { id: 21, name: 'Adil Benrlitom', nickname: 'ScreaM', teamId: 4 },
+  { id: 22, name: 'Nabil Khermez', nickname: 'Nivera', teamId: 4 },
+  
+  // G2 Esports (5 players) - teamId 5
   { id: 4, name: 'Rasmus Winther', nickname: 'Caps', teamId: 5 },
+  { id: 23, name: 'Sergen Çelik', nickname: 'BrokenBlade', teamId: 5 },
+  { id: 24, name: 'Marcin Jankowski', nickname: 'Jankos', teamId: 5 },
+  { id: 25, name: 'Victor Chou', nickname: 'Flakked', teamId: 5 },
+  { id: 26, name: 'Raphaël Crabbé', nickname: 'Targamas', teamId: 5 },
+  
+  // T1 (5 players) - teamId 6
   { id: 5, name: 'Lee Sang-hyeok', nickname: 'Faker', teamId: 6 },
-  { id: 6, name: 'Zhao LiJie', nickname: 'Scout', teamId: 7 },
-  { id: 7, name: 'Ibrahim Allami', nickname: 'Fudge', teamId: 8 },
-  { id: 8, name: 'Marek Brázda', nickname: 'Humanoid', teamId: 9 },
-  { id: 9, name: 'Kim Geon-woo', nickname: 'Deft', teamId: 10 },
-  { id: 10, name: 'Li Yuan-Hao', nickname: 'Xiaohu', teamId: 11 },
-  { id: 11, name: 'Lucas Fayard', nickname: 'Saken', teamId: 12 },
-  { id: 12, name: 'Denys Kostin', nickname: 'electroNic', teamId: 13 },
+  { id: 27, name: 'Choi Woo-je', nickname: 'Zeus', teamId: 6 },
+  { id: 28, name: 'Moon Hyeon-jun', nickname: 'Oner', teamId: 6 },
+  { id: 29, name: 'Lee Min-hyeong', nickname: 'Gumayusi', teamId: 6 },
+  { id: 30, name: 'Ryu Min-seok', nickname: 'Keria', teamId: 6 },
+  
+  // Other players from original list (now part of smaller teams)
+  { id: 6, name: 'Zhao LiJie', nickname: 'Scout', teamId: 7 }, // EDG (1 player)
+  { id: 7, name: 'Ibrahim Allami', nickname: 'Fudge', teamId: 8 }, // C9 (1 player)
+  { id: 8, name: 'Marek Brázda', nickname: 'Humanoid', teamId: 9 }, // Fnatic (1 player)
+  { id: 9, name: 'Kim Geon-woo', nickname: 'Deft', teamId: 10 }, // DRX (1 player)
+  { id: 10, name: 'Li Yuan-Hao', nickname: 'Xiaohu', teamId: 11 }, // RNG (1 player)
+  { id: 11, name: 'Lucas Fayard', nickname: 'Saken', teamId: 12 }, // Karmine Corp (1 player)
+  { id: 12, name: 'Denys Kostin', nickname: 'electroNic', teamId: 13 }, // NaVi (1 player)
 ];
 
-const allTournamentsBase: Omit<Tournament, 'reviews' | 'averageRating' | 'sponsorships' | 'placements'>[] = [
+const allTournamentsBase: (Omit<Tournament, 'reviews' | 'averageRating' | 'sponsorships' | 'placements' | 'prizePool'> & { prizePool?: number })[] = [
     // LoL
-    { id: 1, name: 'Worlds', year: 2023, reward: 2250000, imageUrl: '/images/Worlds2023.png', gameId: 'league', startDate: '2023-10-01' },
-    { id: 3, name: 'MSI', year: 2022, reward: 250000, imageUrl: '/images/Msi2023.png', gameId: 'league', startDate: '2022-05-10' },
+    { id: 1, name: 'Worlds', year: 2023, prizePool: 2225000, imageUrl: '/images/Worlds2023.png', gameId: 'league', startDate: '2023-10-01' },
+    { id: 3, name: 'MSI', year: 2022, prizePool: 250000, imageUrl: '/images/Msi2023.png', gameId: 'league', startDate: '2022-05-10' },
     // Valorant
-    { id: 2, name: 'Champions', year: 2023, reward: 2250000, imageUrl: '/images/ChampionsValorant2023.jpg', gameId: 'valorant', startDate: '2023-08-06' },
-    { id: 4, name: 'Masters Tokyo', year: 2023, reward: 1000000, imageUrl: '/images/VCT_Masters_Tokyo_allmode.png', gameId: 'valorant', startDate: '2023-06-11' },
-    { id: 5, name: 'VCT', year: 2024, reward: 500000, imageUrl: '/images/vctlogo.png', gameId: 'valorant', startDate: '2024-02-15' },
-    { id: 6, name: 'Game Changers', year: 2024, reward: 500000, imageUrl: '/images/gamechangers.jpg', gameId: 'valorant', startDate: '2024-04-10' },
+    { id: 2, name: 'Champions', year: 2023, prizePool: 2250000, imageUrl: '/images/ChampionsValorant2023.jpg', gameId: 'valorant', startDate: '2023-08-06' },
+    { id: 4, name: 'Masters Tokyo', year: 2023, prizePool: 1000000, imageUrl: '/images/VCT_Masters_Tokyo_allmode.png', gameId: 'valorant', startDate: '2023-06-11' },
+    { id: 5, name: 'VCT', year: 2024, prizePool: 500000, imageUrl: '/images/vctlogo.png', gameId: 'valorant', startDate: '2024-07-15' },
+    { id: 6, name: 'Game Changers', year: 2024, prizePool: 500000, imageUrl: '/images/gamechangers.jpg', gameId: 'valorant', startDate: '2024-08-10' },
     // TFT
-    { id: 7, name: 'TFT Worlds', year: 2024, reward: 456000, imageUrl: '/images/tftworlds.jpg', gameId: 'tft', startDate: '2024-04-20' },
+    { id: 7, name: 'TFT Worlds', year: 2024, prizePool: 456000, imageUrl: '/images/tftworlds.jpg', gameId: 'tft', startDate: '2024-09-20' },
+    // LOR
+    { id: 8, name: 'LoR Worlds', year: 2024, prizePool: 200000, imageUrl: 'https://picsum.photos/seed/lor-worlds/400/640', gameId: 'lor', startDate: '2024-10-01' },
 ];
 
 const getPlayersForTeam = (teamId: number): Player[] => {
@@ -154,8 +186,8 @@ const tournamentSponsorshipsData = {
     2: [{ sponsorName: 'Samsung', investment: 400000 }],
     3: [{ sponsorName: 'BMW', investment: 200000 }],
     4: [{ sponsorName: 'Red Bull', investment: 350000 }],
-    5: [{ sponsorName: 'Logitech', investment: 250000 }],
-    6: [{ sponsorName: 'HyperX', investment: 180000 }],
+    5: [{ sponsorName: 'Logitech', investment: 250000 }, { sponsorName: 'Intel', investment: 200000 }],
+    6: [{ sponsorName: 'Verizon', investment: 180000 }],
     7: [{ sponsorName: 'Nike', investment: 150000 }],
 };
 
@@ -194,7 +226,7 @@ const tournamentPlacementsData = {
 export const buildTournament = (id: number): Tournament => {
     const tourneyData = allTournamentsBase.find(t => t.id === id);
     if (!tourneyData) throw new Error(`Tournament with id ${id} not found.`);
-    
+
     const reviews = tournamentReviews[id] || [];
     const averageRating = reviews.length > 0
         ? reviews.reduce((acc, r) => acc + r.stars, 0) / reviews.length
@@ -234,6 +266,13 @@ export const games: Game[] = [
     year: 2019,
     logoUrl: '/images/TFTLogo.jpg',
     bgUrl: '/images/TFTFundo.jpg',
+  },
+  {
+    id: 'lor',
+    name: 'Legends of Runeterra',
+    year: 2020,
+    logoUrl: 'https://picsum.photos/seed/lor-card/640/768',
+    bgUrl: 'https://picsum.photos/seed/lor/1920/1080',
   },
 ];
 
@@ -279,7 +318,7 @@ export const recentMatches: Match[] = recentMatchesData.sort((a, b) => new Date(
 export const valorantData: GameData = {
   id: 'valorant',
   name: 'Valorant',
-  bgUrl: '/images/ValorantFundo.jpg',
+  bgUrl: 'https://picsum.photos/seed/vct/1920/1080',
   teams: [
     buildTeam(2), // LOUD
     buildTeam(3), // FURIA
@@ -306,7 +345,7 @@ export const valorantData: GameData = {
 export const leagueOfLegendsData: GameData = {
   id: 'league',
   name: 'League of Legends',
-  bgUrl: '/images/lolfundo.jpg',
+  bgUrl: 'https://picsum.photos/seed/worlds/1920/1080',
   teams: [
     buildTeam(6), // T1
     buildTeam(5), // G2 Esports
@@ -336,7 +375,7 @@ export const leagueOfLegendsData: GameData = {
 export const tftData: GameData = {
   id: 'tft',
   name: 'Teamfight Tactics',
-  bgUrl: '/images/TFTFundo.jpg',
+  bgUrl: 'https://picsum.photos/seed/tft-bg/1920/1080',
   teams: [
     buildTeam(9), // Fnatic (Humanoid)
     buildTeam(12), // Karmine Corp (Saken)
@@ -350,4 +389,18 @@ export const tftData: GameData = {
     { id: 1, question: 'O que é o Mundial de TFT?', answer: 'O Campeonato Mundial de Teamfight Tactics reúne os melhores jogadores de todo o mundo que se classificaram através de suas respectivas competições regionais para competir pelo título de Campeão Mundial.' },
     { id: 2, question: 'Como funciona a progressão no TFT?', answer: 'Os jogadores progridem através de um sistema de ranqueadas, ganhando Pontos de Liga (PDL) por terminar nas primeiras posições de uma partida. Os elos são semelhantes aos de League of Legends, indo de Ferro a Desafiante.' },
   ],
+};
+
+export const lorData: GameData = {
+    id: 'lor',
+    name: 'Legends of Runeterra',
+    bgUrl: 'https://picsum.photos/seed/lor-bg/1920/1080',
+    teams: [],
+    tournaments: [
+        buildTournament(8),
+    ],
+    faqs: [
+      { id: 1, question: 'Como funcionam os torneios sazonais?', answer: 'Os Torneios Sazonais são eventos competitivos abertos onde os jogadores podem se qualificar através do desempenho nas ranqueadas ou em torneios de última chance para competir por prêmios e um lugar no Mundial.' },
+      { id: 2, question: 'O que é o Mundial de Legends of Runeterra?', answer: 'É o auge do jogo competitivo de LoR, onde os melhores jogadores de todo o mundo, qualificados através de torneios sazonais e pontos, competem pelo título mundial.' },
+    ],
 };

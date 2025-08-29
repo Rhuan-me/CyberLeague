@@ -1,4 +1,4 @@
-export type Page = 'home' | 'valorant' | 'league' | 'tft' | 'queries';
+export type Page = 'home' | 'valorant' | 'league' | 'tft' | 'lor' | 'queries';
 
 export interface PlayerTournamentStats {
   tournamentId: number;
@@ -55,11 +55,11 @@ export interface Tournament {
   imageUrl: string;
   reviews: Review[];
   averageRating: number;
-  gameId: 'league' | 'valorant' | 'tft';
+  gameId: 'league' | 'valorant' | 'tft' | 'lor';
   startDate: string;
   sponsorships?: TournamentSponsorship[];
   placements?: TeamPlacement[];
-  reward?: number;
+  prizePool?: number;
 }
 
 export interface FaqItem {
