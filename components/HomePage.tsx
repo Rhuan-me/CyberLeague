@@ -75,7 +75,7 @@ const HomePage: React.FC<HomePageProps> = ({ onGameSelect }) => {
       {/* Recent Matches Section */}
       <section 
         className="py-24 bg-cover bg-fixed"
-        style={{ backgroundImage: `linear-gradient(rgba(1, 0, 16, 0.85), rgba(1, 0, 16, 0.85)), url(https://picsum.photos/1920/1080?grayscale&blur=1)`}}
+        style={{ backgroundImage: `linear-gradient(rgba(1, 0, 16, 0.85), rgba(1, 0, 16, 0.85)), url(${brandImage})`}}
       >
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center uppercase mb-16 tracking-wider">Partidas Recentes</h2>

@@ -82,7 +82,7 @@ export interface Match {
     name: string;
     date: string;
     tournamentName: string;
-    gameName: 'Valorant' | 'League of Legends' | 'MSI';
+    gameName: 'Valorant' | 'League of Legends';
     team1: Team;
     team2: Team;
     winnerId: number;

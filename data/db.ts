@@ -96,7 +96,7 @@ const allTournamentsBase: (Omit<Tournament, 'reviews' | 'averageRating' | 'spons
     // TFT
     { id: 7, name: 'TFT Worlds', year: 2024, prizePool: 456000, imageUrl: '/images/tftworlds.jpg', gameId: 'tft', startDate: '2024-09-20' },
     // LOR
-    { id: 8, name: 'LoR Worlds', year: 2024, prizePool: 200000, imageUrl: 'https://picsum.photos/seed/lor-worlds/400/640', gameId: 'lor', startDate: '2024-10-01' },
+    { id: 8, name: 'LoR Worlds', year: 2024, prizePool: 200000, imageUrl: '/images/lor-worlds.jpg', gameId: 'lor', startDate: '2024-10-01' },
 ];
 
 const getPlayersForTeam = (teamId: number): Player[] => {
@@ -271,8 +271,8 @@ export const games: Game[] = [
     id: 'lor',
     name: 'Legends of Runeterra',
     year: 2020,
-    logoUrl: 'https://picsum.photos/seed/lor-card/640/768',
-    bgUrl: 'https://picsum.photos/seed/lor/1920/1080',
+    logoUrl: '/images/lor-logo.png',
+    bgUrl: '/images/lor-fundo.jpg',
   },
 ];
 
@@ -303,7 +303,7 @@ const recentMatchesData: Match[] = [
         name: 'Semifinal 1',
         date: '2022-05-28T12:00:00Z',
         tournamentName: 'MSI 2022',
-        gameName: 'MSI',
+        gameName: 'League of Legends',
         team1: buildTeam(6), // T1
         team2: buildTeam(9), // Fnatic
         winnerId: 6
@@ -318,7 +318,7 @@ export const recentMatches: Match[] = recentMatchesData.sort((a, b) => new Date(
 export const valorantData: GameData = {
   id: 'valorant',
   name: 'Valorant',
-  bgUrl: 'https://picsum.photos/seed/vct/1920/1080',
+  bgUrl: '/images/ValorantFundo.jpg',
   teams: [
     buildTeam(2), // LOUD
     buildTeam(3), // FURIA
@@ -345,7 +345,7 @@ export const valorantData: GameData = {
 export const leagueOfLegendsData: GameData = {
   id: 'league',
   name: 'League of Legends',
-  bgUrl: 'https://picsum.photos/seed/worlds/1920/1080',
+  bgUrl: '/images/lolfundo.jpg',
   teams: [
     buildTeam(6), // T1
     buildTeam(5), // G2 Esports
@@ -375,7 +375,7 @@ export const leagueOfLegendsData: GameData = {
 export const tftData: GameData = {
   id: 'tft',
   name: 'Teamfight Tactics',
-  bgUrl: 'https://picsum.photos/seed/tft-bg/1920/1080',
+  bgUrl: '/images/TFTFundo.jpg',
   teams: [
     buildTeam(9), // Fnatic (Humanoid)
     buildTeam(12), // Karmine Corp (Saken)
@@ -394,7 +394,7 @@ export const tftData: GameData = {
 export const lorData: GameData = {
     id: 'lor',
     name: 'Legends of Runeterra',
-    bgUrl: 'https://picsum.photos/seed/lor-bg/1920/1080',
+    bgUrl: '/images/lor-fundo.jpg',
     teams: [],
     tournaments: [
         buildTournament(8),
